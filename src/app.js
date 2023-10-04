@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 
 //Routes importation
 import authRoutes from './routes/auth.routes.js'
+import tasktsRoutes from './routes/task.routes.js'
 
 const app = express()
 
@@ -14,6 +15,7 @@ app.use(morgan('dev'));
 app.use(cookieParser())
 
 app.use('/api', authRoutes);
+app.use('/api', tasktsRoutes)
 
 
 export default app;
