@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema(
     username: {
       type: String,
       required: true,
-      trim: true, //Elimina los espacios y captura el texto unicamente
+      trim: true, //Delete the spaces on the username field b
     },
     email: {
       type: String,
