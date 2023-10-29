@@ -2,7 +2,6 @@ import { createContext, useState, useContext } from "react";
 import { registerRequest } from "../api/auth";
 
 export const AuthContext = createContext();
-
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
