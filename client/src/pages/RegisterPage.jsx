@@ -9,7 +9,7 @@ function RegisterPage() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { singup, isAuthenticated, errors: RegisterErrors } = useAuth();
+  const { singup, isAuthenticated, errors: registerErrors } = useAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,10 +22,9 @@ function RegisterPage() {
 
   return (
     <div className="bg-zinc-800 max-w-md p-10 rounded-md">
-      {RegisterErrors.map((error, i) => {
-        <div className="bg-red-500 p-2 text_white" key={i}>{error}</div>;
-      })}
-
+      {registerErrors.map((error, i) => (
+        <p className="bg-red-500 p-2 text-white" key={i}>{error}</p>
+      ))}
       <form onSubmit={onSubmit}>
         <input
           type="text"
@@ -35,7 +34,7 @@ function RegisterPage() {
         />
         {errors.username && (
           <p className="text-red-500 text-xs italic">
-            Username is required for registration
+            Username is required for the registration
           </p>
         )}
         <input
@@ -58,7 +57,8 @@ function RegisterPage() {
         />
         {errors.password && (
           <p className="text-red-500 text-xs italic">
-            Password is required. Please enter your password and try again.
+            {" "}
+            Password is required for the registration{" "}
           </p>
         )}
         <button type="submit">Register</button>
