@@ -3,6 +3,8 @@ import {
   addTaskRequest,
   getTasksRequest,
   deleteTaskRequest,
+  getTaskByIdRequest,
+  updateTaskRequest
 } from "../api/tasks";
 
 const TaskContext = createContext();
@@ -47,13 +49,33 @@ export function TaskProvider({ children }) {
     }
   };
 
+  const getTaskById = async (id) => {
+    try {
+      const res = await getTaskByIdRequest(id);
+      return res.data;
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+const updateTask = async (id, task) => {
+  try {
+    const res = await updateTaskRequest(id, task);
+    console.log(res)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
   return (
     <TaskContext.Provider
       value={{
         tasks,
         addTask,
         getTasks,
+        getTaskById,
         deleteTask,
+        updateTask
       }}
     >
       {children}
