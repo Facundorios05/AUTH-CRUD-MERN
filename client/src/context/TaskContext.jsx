@@ -42,7 +42,6 @@ export function TaskProvider({ children }) {
     try {
       const res = await deleteTaskRequest(id);
       if (res.status === 204) setTasks(tasks.filter((task) => task._id !== id));
-      console.log(res);
     } catch (error) {
       console.log(error);
     }

@@ -1,7 +1,6 @@
 import { createContext, useState, useContext, useEffect } from "react";
 import { registerRequest, loginRequest, verifyTokenRequest } from "../api/auth";
 import Cookies from "js-cookie";
-import { set } from "react-hook-form";
 
 export const AuthContext = createContext();
 export const useAuth = () => {
@@ -93,7 +92,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ singup, singin, logout , loading, user, isAuthenticated, errors }}
+      value={{ singup, singin, logout, loading, user, isAuthenticated, errors }}
     >
       {children}
     </AuthContext.Provider>
