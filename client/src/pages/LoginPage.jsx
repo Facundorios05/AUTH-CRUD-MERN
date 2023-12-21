@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useAuth } from "../context/AuthContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 function LoginPage() {
   const {
@@ -9,17 +10,25 @@ function LoginPage() {
     formState: { errors },
   } = useForm();
 
-  const { singin, errors: signinErrors } = useAuth();
+  const { singin, errors: signinErrors, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
 
   const onSubmit = handleSubmit((data) => {
     singin(data);
   });
+
+  useEffect(() => {
+    if (isAuthenticated) navigate("/tasks");
+  }, [isAuthenticated]);
+
   return (
     <div className="flex h-[calc(100vh-100px)] items-center justify-center">
       <div className="bg-zinc-800 max-w-md w-full p-10 rounded-md">
-      {signinErrors.map((error, i) => (
-        <p className="bg-red-500 p-2 text-white text-center my-2" key={i}>{error}</p>
-      ))}
+        {signinErrors.map((error, i) => (
+          <p className="bg-red-500 p-2 text-white text-center my-2" key={i}>
+            {error}
+          </p>
+        ))}
         <h1 className="text-2xl font-bold">Login</h1>
         <form onSubmit={onSubmit}>
           <input
@@ -48,7 +57,10 @@ function LoginPage() {
           )}
           <button type="submit">Login</button>
           <p className="flex gap-x-2 justify-between">
-            Don't have an account? <Link to="/register" className=" text-sky-500">Sign up</Link>
+            Don't have an account?{" "}
+            <Link to="/register" className=" text-sky-500">
+              Sign up
+            </Link>
           </p>
         </form>
       </div>
