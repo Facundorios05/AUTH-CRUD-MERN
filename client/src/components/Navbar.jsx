@@ -21,13 +21,13 @@ function Navbar() {
                 className="bg-indigo-500 px-4 py-1 rounded-sm"
               >
                 {" "}
-                Add a new task{" "}
+                Add a new task
               </Link>
             </li>
             <li>
               <Link
                 to="/"
-                onClick={() => {ñ
+                onClick={() => {
                   logout();
                 }}
               >
